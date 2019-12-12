@@ -35,4 +35,38 @@
     <delete id="delMovieByid" parameterType="int">
         delete from movie where mid=#{mid}
     </delete>
+    <!--  根据电影名字影片库模糊查询  -->
+    <select id="getMovieByName" parameterType="com.wqy.cinematickets.entity.Pagination" resultType="com.wqy.cinematickets.entity.Film">
+        select * from movie where mname like CONCAT('%',#{name},'%') limit #{pageSize} offset #{pageIndex}
+    </select>
+    <!--  根据电影名字影片库模糊查询的数据个数  -->
+    <select id="getMovieByNameCount" parameterType="String" resultType="int">
+        select COUNT(*) from movie where mname like CONCAT('%',#{name},'%')
+    </select>
+
+
+    <!--  添加近期影片  -->
+    <insert id="addRecentFilms" parameterType="int">
+        insert into recentfilms(mid) value(#{mid})
+    </insert>
+    <!--  根据近期影片id删除近期影片  -->
+    <delete id="delRecentFilmsById" parameterType="int">
+        delete from recentfilms where  rid=#{rid}
+    </delete>
+    <!--  获取近期影片  -->
+    <select id="getAllRecentFilms" resultType="com.wqy.cinematickets.entity.Film">
+        select m.* from movie m,recentfilms r where m.mid=r.mid
+    </select>
+    <!--  添加放映厅  -->
+    <insert id="addProjectionHall" parameterType="com.wqy.cinematickets.entity.ProjectionHall">
+        insert into projectionhall(mrow,mcolumn) value(#{mrow},#{mcolumn})
+    </insert>
+    <!--  修改放映厅  -->
+    <update id="updateProjectionHallById" parameterType="com.wqy.cinematickets.entity.ProjectionHall">
+        update projectionhall set mrow=#{mrow},mcolumn=#{mcolumn} where pid=#{pid}
+    </update>
+    <!--  获取所有放映厅  -->
+    <select id="getAllProjectionHall" resultType="com.wqy.cinematickets.entity.ProjectionHall">
+        select * from projectionhall
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.wqy.cinematickets.service.managerservice.impl;
 import com.wqy.cinematickets.dao.managerdao.ManagerDao;
 import com.wqy.cinematickets.entity.Film;
 import com.wqy.cinematickets.entity.Pagination;
+import com.wqy.cinematickets.entity.ProjectionHall;
 import com.wqy.cinematickets.entity.User;
 import com.wqy.cinematickets.service.managerservice.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,73 @@ public class ManagerServiceImpl implements ManagerService {
         }else {
             return false;
         }
+    }
+
+    @Override
+    //根据电影名字影片库模糊查询
+    public List<Film> getMovieByName(Pagination pagination){
+        return managerDao.getMovieByName(pagination);
+    }
+
+    @Override
+    //根据电影名字影片库模糊查询的数据个数
+    public int getMovieByNameCount(String name){
+        return managerDao.getMovieByNameCount(name);
+    }
+
+    @Override
+    //添加近期影片
+    public Boolean addRecentFilms(int mid){
+        int i=managerDao.addRecentFilms(mid);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //根据近期影片id删除近期影片
+    public Boolean delRecentFilmsById(int rid){
+        int i=managerDao.delRecentFilmsById(rid);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //获取近期影片
+    public List<Film> getAllRecentFilms(){
+        return managerDao.getAllRecentFilms();
+    }
+
+    @Override
+    //添加放映厅
+    public Boolean addProjectionHall(ProjectionHall projectionHall){
+        int i=managerDao.addProjectionHall(projectionHall);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //修改放映厅
+    public Boolean updateProjectionHallById(ProjectionHall projectionHall){
+        int i=managerDao.updateProjectionHallById(projectionHall);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //获取所有放映厅
+    public List<ProjectionHall> getAllProjectionHall(){
+        return managerDao.getAllProjectionHall();
     }
 }

@@ -1,15 +1,9 @@
 package com.wqy.cinematickets.controller.managercontroller;
 
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.Pagination;
-import com.wqy.cinematickets.entity.Result;
-import com.wqy.cinematickets.entity.User;
+import com.wqy.cinematickets.entity.*;
 import com.wqy.cinematickets.service.managerservice.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,6 +88,84 @@ public class ManagerController {
     @RequestMapping(value = "/delMovieByid",method = RequestMethod.GET)
     public Boolean delMovieByid(Integer mid){
         return managerService.delMovieByid(mid);
+    }
+
+    //根据电影名字影片库模糊查询
+    @RequestMapping(value = "/getMovieByName",method = RequestMethod.POST)
+    public Result<List<Film>> getMovieByName(@RequestBody Pagination pagination){
+        Result<List<Film>> filmResult = new Result<List<Film>>();
+        List<Film> film=managerService.getMovieByName(pagination);
+        if(film != null){
+            filmResult.setCode(0);
+            filmResult.setBody(film);
+        }else {
+            filmResult.setCode(1000);
+            filmResult.setMessage("没有查询到电影数据");
+        }
+        return filmResult;
+    }
+
+    //根据电影名字影片库模糊查询的数据个数
+    @RequestMapping(value = "/getMovieByNameCount",method = RequestMethod.GET)
+    public int getMovieByNameCount(String name){
+        return managerService.getMovieByNameCount(name);
+    }
+
+
+
+
+    //添加近期影片
+    @RequestMapping(value = "/addRecentFilms",method = RequestMethod.GET)
+    public Boolean addRecentFilms(int mid){
+        return managerService.addRecentFilms(mid);
+    }
+
+    //根据近期影片id删除近期影片
+    @RequestMapping(value = "/delRecentFilmsById",method = RequestMethod.GET)
+    public Boolean delRecentFilmsById(int rid){
+        return managerService.delRecentFilmsById(rid);
+    }
+
+    //获取近期影片
+    @RequestMapping(value = "/getAllRecentFilms",method = RequestMethod.GET)
+    public Result<List<Film>> getAllRecentFilms(){
+        List<Film> film=managerService.getAllRecentFilms();
+        Result<List<Film>> filmres=new Result<List<Film>>();
+        if(film != null){
+            filmres.setCode(0);
+            filmres.setBody(film);
+        }else {
+            filmres.setCode(1000);
+            filmres.setMessage("未查询到数据");
+        }
+        return filmres;
+    }
+
+    //添加放映厅
+    @RequestMapping(value = "/addProjectionHall",method = RequestMethod.POST)
+    public Boolean addProjectionHall(@RequestBody ProjectionHall projectionHall){
+        return managerService.addProjectionHall(projectionHall);
+    }
+
+    //修改放映厅
+    @RequestMapping(value = "/updateProjectionHallById",method = RequestMethod.POST)
+    public Boolean updateProjectionHallById(@RequestBody ProjectionHall projectionHall){
+        return managerService.updateProjectionHallById(projectionHall);
+    }
+
+    //获取所有放映厅
+    @RequestMapping(value = "/getAllProjectionHall",method = RequestMethod.GET)
+    public Result<List<ProjectionHall>> getAllProjectionHall(){
+        List<ProjectionHall> projectionHalls=managerService.getAllProjectionHall();
+        Result<List<ProjectionHall>> proResult=new Result<List<ProjectionHall>>();
+        if(projectionHalls!=null){
+            proResult.setCode(0);
+            proResult.setBody(projectionHalls);
+        }else {
+            proResult.setCode(1000);
+            proResult.setMessage("没有查询到数据");
+        }
+        return proResult;
     }
 
 }
