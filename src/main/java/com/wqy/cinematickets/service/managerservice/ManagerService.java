@@ -30,8 +30,8 @@ public interface ManagerService {
     int getMovieByNameCount(String name);
     //添加近期影片
     Boolean addRecentFilms(int mid);
-    //根据近期影片id删除近期影片
-    Boolean delRecentFilmsById(int rid);
+    //根据影片id删除近期影片
+    Boolean delRecentFilmsById(int mid);
     //获取近期影片
     List<Film> getAllRecentFilms();
     //添加放映厅

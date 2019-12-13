@@ -108,9 +108,9 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    //根据近期影片id删除近期影片
-    public Boolean delRecentFilmsById(int rid){
-        int i=managerDao.delRecentFilmsById(rid);
+    //根据影片id删除近期影片
+    public Boolean delRecentFilmsById(int mid){
+        int i=managerDao.delRecentFilmsById(mid);
         if(i>0){
             return true;
         }else {

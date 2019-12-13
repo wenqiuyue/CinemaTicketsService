@@ -43,15 +43,13 @@
     <select id="getMovieByNameCount" parameterType="String" resultType="int">
         select COUNT(*) from movie where mname like CONCAT('%',#{name},'%')
     </select>
-
-
     <!--  添加近期影片  -->
     <insert id="addRecentFilms" parameterType="int">
         insert into recentfilms(mid) value(#{mid})
     </insert>
-    <!--  根据近期影片id删除近期影片  -->
+    <!--  根据影片id删除近期影片  -->
     <delete id="delRecentFilmsById" parameterType="int">
-        delete from recentfilms where  rid=#{rid}
+        delete from recentfilms where  mid=#{mid}
     </delete>
     <!--  获取近期影片  -->
     <select id="getAllRecentFilms" resultType="com.wqy.cinematickets.entity.Film">

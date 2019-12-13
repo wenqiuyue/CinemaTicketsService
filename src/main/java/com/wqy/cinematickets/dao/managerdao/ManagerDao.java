@@ -28,12 +28,10 @@ public interface ManagerDao {
     List<Film> getMovieByName(Pagination pagination);
     //根据电影名字影片库模糊查询的数据个数
     int getMovieByNameCount(String name);
-
-
     //添加近期影片
     int addRecentFilms(int mid);
-    //根据近期影片id删除近期影片
-    int delRecentFilmsById(int rid);
+    //根据影片id删除近期影片
+    int delRecentFilmsById(int mid);
     //获取近期影片
     List<Film> getAllRecentFilms();
     //添加放映厅

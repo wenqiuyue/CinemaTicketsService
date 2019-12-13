@@ -111,19 +111,16 @@ public class ManagerController {
         return managerService.getMovieByNameCount(name);
     }
 
-
-
-
     //添加近期影片
     @RequestMapping(value = "/addRecentFilms",method = RequestMethod.GET)
     public Boolean addRecentFilms(int mid){
         return managerService.addRecentFilms(mid);
     }
 
-    //根据近期影片id删除近期影片
+    //根据影片id删除近期影片
     @RequestMapping(value = "/delRecentFilmsById",method = RequestMethod.GET)
-    public Boolean delRecentFilmsById(int rid){
-        return managerService.delRecentFilmsById(rid);
+    public Boolean delRecentFilmsById(int mid){
+        return managerService.delRecentFilmsById(mid);
     }
 
     //获取近期影片
