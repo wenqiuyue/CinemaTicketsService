@@ -1,10 +1,7 @@
 package com.wqy.cinematickets.service.managerservice.impl;
 
 import com.wqy.cinematickets.dao.managerdao.ManagerDao;
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.Pagination;
-import com.wqy.cinematickets.entity.ProjectionHall;
-import com.wqy.cinematickets.entity.User;
+import com.wqy.cinematickets.entity.*;
 import com.wqy.cinematickets.service.managerservice.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -150,5 +147,27 @@ public class ManagerServiceImpl implements ManagerService {
     //获取所有放映厅
     public List<ProjectionHall> getAllProjectionHall(){
         return managerDao.getAllProjectionHall();
+    }
+
+    @Override
+    //删除放映厅
+    public Boolean delProjectionHallById(int pid){
+        int i=managerDao.delProjectionHallById(pid);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //添加场次安排
+    public Boolean addExclusivePiece(ExclusivePiece exclusivePiece){
+        int i=managerDao.addExclusivePiece(exclusivePiece);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

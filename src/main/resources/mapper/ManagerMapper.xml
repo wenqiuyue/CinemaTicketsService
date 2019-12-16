@@ -65,6 +65,14 @@
     </update>
     <!--  获取所有放映厅  -->
     <select id="getAllProjectionHall" resultType="com.wqy.cinematickets.entity.ProjectionHall">
-        select * from projectionhall
+        select * from projectionhall order by pid desc
     </select>
+    <!--  删除放映厅  -->
+    <delete id="delProjectionHallById" parameterType="int">
+        delete from projectionhall where pid=#{pid}
+    </delete>
+    <!--  添加场次安排  -->
+    <insert id="addExclusivePiece" parameterType="com.wqy.cinematickets.entity.ExclusivePiece">
+        insert into exclusivepiece(rid,pid,projectiontime) value(#{rid},#{pid},#{projectiontime})
+    </insert>
 </mapper>

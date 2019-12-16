@@ -165,4 +165,17 @@ public class ManagerController {
         return proResult;
     }
 
+    //删除放映厅
+    @RequestMapping(value = "/delProjectionHallById",method = RequestMethod.GET)
+    public Boolean delProjectionHallById(int pid){
+        return managerService.delProjectionHallById(pid);
+    }
+
+
+    //添加场次安排
+    @RequestMapping(value = "/delProjectionHallById",method = RequestMethod.POST)
+    public Boolean addExclusivePiece(@RequestBody ExclusivePiece exclusivePiece){
+        return managerService.addExclusivePiece(exclusivePiece);
+    }
+
 }

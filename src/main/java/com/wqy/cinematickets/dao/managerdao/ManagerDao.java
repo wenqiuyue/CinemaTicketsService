@@ -1,9 +1,6 @@
 package com.wqy.cinematickets.dao.managerdao;
 
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.Pagination;
-import com.wqy.cinematickets.entity.ProjectionHall;
-import com.wqy.cinematickets.entity.User;
+import com.wqy.cinematickets.entity.*;
 
 import java.util.List;
 
@@ -40,4 +37,8 @@ public interface ManagerDao {
     int updateProjectionHallById(ProjectionHall projectionHall);
     //获取所有放映厅
     List<ProjectionHall> getAllProjectionHall();
+    //删除放映厅
+    int delProjectionHallById(int pid);
+    //添加场次安排
+    int addExclusivePiece(ExclusivePiece exclusivePiece);
 }
