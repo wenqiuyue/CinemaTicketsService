@@ -1,13 +1,18 @@
 package com.wqy.cinematickets.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ExclusivePiece {
     private int eid;
-    private int rid;
+    private int mid;
     private int pid;
-    private Date projectiontime;
-
+    private Date timebegin;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date timeend;
+    private Film film;
     public int getEid() {
         return eid;
     }
@@ -16,12 +21,12 @@ public class ExclusivePiece {
         this.eid = eid;
     }
 
-    public int getRid() {
-        return rid;
+    public int getMid() {
+        return mid;
     }
 
-    public void setRid(int rid) {
-        this.rid = rid;
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     public int getPid() {
@@ -32,11 +37,27 @@ public class ExclusivePiece {
         this.pid = pid;
     }
 
-    public Date getProjectiontime() {
-        return projectiontime;
+    public Date getTimebegin() {
+        return timebegin;
     }
 
-    public void setProjectiontime(Date projectiontime) {
-        this.projectiontime = projectiontime;
+    public void setTimebegin(Date timebegin) {
+        this.timebegin = timebegin;
+    }
+
+    public Date getTimeend() {
+        return timeend;
+    }
+
+    public void setTimeend(Date timeend) {
+        this.timeend = timeend;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 }

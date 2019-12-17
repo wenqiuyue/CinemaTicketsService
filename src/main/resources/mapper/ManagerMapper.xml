@@ -73,6 +73,31 @@
     </delete>
     <!--  添加场次安排  -->
     <insert id="addExclusivePiece" parameterType="com.wqy.cinematickets.entity.ExclusivePiece">
-        insert into exclusivepiece(rid,pid,projectiontime) value(#{rid},#{pid},#{projectiontime})
+        insert into exclusivepiece(mid,pid,timebegin,timeend) value(#{mid},#{pid},#{timebegin},#{timeend})
     </insert>
+    <!--  单表查询场次  -->
+    <select id="getExclusivepiece" resultType="com.wqy.cinematickets.entity.ExclusivePiece">
+        select * from exclusivepiece
+    </select>
+    <resultMap id="exclusivePiece" type="com.wqy.cinematickets.entity.ExclusivePiece">
+        <id property="eid" column="eid"></id>
+        <result property="mid" column="mid"></result>
+        <result property="pid" column="pid"></result>
+        <result property="timebegin" column="timebegin"></result>
+        <result property="timeend" column="timeend"></result>
+        <association property="film" javaType="com.wqy.cinematickets.entity.Film">
+            <id property="mid" column="mid"></id>
+            <result property="mname" column="mname"></result>
+            <result property="mtype" column="mtype"></result>
+            <result property="mcountry" column="mcountry"></result>
+            <result property="releasetime" column="releasetime"></result>
+            <result property="mduration" column="mduration"></result>
+            <result property="mpicture" column="mpicture"></result>
+            <result property="mintroduction" column="mintroduction"></result>
+        </association>
+    </resultMap>
+    <!--  多表获取排片信息   -->
+    <select id="getExclusivepieceInfo" resultMap="exclusivePiece">
+        select * from exclusivepiece e join movie m on e.mid=m.mid
+    </select>
 </mapper>

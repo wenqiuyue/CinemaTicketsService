@@ -173,9 +173,40 @@ public class ManagerController {
 
 
     //添加场次安排
-    @RequestMapping(value = "/delProjectionHallById",method = RequestMethod.POST)
+    @RequestMapping(value = "/addExclusivePiece",method = RequestMethod.POST)
     public Boolean addExclusivePiece(@RequestBody ExclusivePiece exclusivePiece){
+        System.out.print(exclusivePiece.getTimeend());
         return managerService.addExclusivePiece(exclusivePiece);
+    }
+
+    //单表查询场次
+    @RequestMapping(value = "/getExclusivepiece",method = RequestMethod.GET)
+    public Result<List<ExclusivePiece>> getExclusivepiece(){
+        List<ExclusivePiece> exclusivePieceList = managerService.getExclusivepiece();
+        Result<List<ExclusivePiece>> listResult = new Result<List<ExclusivePiece>>();
+        if(exclusivePieceList!=null){
+            listResult.setCode(0);
+            listResult.setBody(exclusivePieceList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //多表获取排片信息
+    @RequestMapping(value = "/getExclusivepieceInfo",method = RequestMethod.GET)
+    public Result<List<ExclusivePiece>> getExclusivepieceInfo(){
+        List<ExclusivePiece> exclusivePieceList = managerService.getExclusivepieceInfo();
+        Result<List<ExclusivePiece>> listResult = new Result<List<ExclusivePiece>>();
+        if(exclusivePieceList!=null){
+            listResult.setCode(0);
+            listResult.setBody(exclusivePieceList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
     }
 
 }

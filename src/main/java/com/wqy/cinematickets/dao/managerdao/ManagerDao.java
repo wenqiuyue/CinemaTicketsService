@@ -41,4 +41,8 @@ public interface ManagerDao {
     int delProjectionHallById(int pid);
     //添加场次安排
     int addExclusivePiece(ExclusivePiece exclusivePiece);
+    //单表查询场次
+    List<ExclusivePiece> getExclusivepiece();
+    //多表获取排片信息
+    List<ExclusivePiece> getExclusivepieceInfo();
 }

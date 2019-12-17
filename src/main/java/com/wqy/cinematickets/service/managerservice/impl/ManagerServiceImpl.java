@@ -170,4 +170,16 @@ public class ManagerServiceImpl implements ManagerService {
             return false;
         }
     }
+
+    @Override
+    //单表查询场次
+    public List<ExclusivePiece> getExclusivepiece(){
+        return managerDao.getExclusivepiece();
+    }
+
+    @Override
+    //多表获取排片信息
+    public List<ExclusivePiece> getExclusivepieceInfo(){
+        return managerDao.getExclusivepieceInfo();
+    }
 }
