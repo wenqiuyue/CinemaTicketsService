@@ -44,5 +44,13 @@ public interface ManagerDao {
     //单表查询场次
     List<ExclusivePiece> getExclusivepiece();
     //多表获取排片信息
-    List<ExclusivePiece> getExclusivepieceInfo();
+    List<ExclusivePiece> getExclusivepieceInfo(Pagination pagination);
+    //获取场次数量
+    int getExclusivepieceCount();
+    //根据电影名字对场次安排模糊查询
+    List<ExclusivePiece> gettExclusivepieceByName(Pagination pagination);
+    //获取电影名模糊查询场次的数量
+    int getExclusivepieceByNameCount(String name);
+    //删除场次
+    int delExclusivepieceById(int eid);
 }

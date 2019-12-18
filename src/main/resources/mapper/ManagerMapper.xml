@@ -97,7 +97,24 @@
         </association>
     </resultMap>
     <!--  多表获取排片信息   -->
-    <select id="getExclusivepieceInfo" resultMap="exclusivePiece">
-        select * from exclusivepiece e join movie m on e.mid=m.mid
+    <select id="getExclusivepieceInfo" resultMap="exclusivePiece" parameterType="com.wqy.cinematickets.entity.Pagination">
+        select * from exclusivepiece e join movie m on e.mid=m.mid limit #{pageSize} offset #{pageIndex}
     </select>
+    <!-- 获取场次的数量  -->
+    <select id="getExclusivepieceCount" resultType="int">
+        select COUNT(*) from exclusivepiece
+    </select>
+    <!--  根据电影名字对场次安排模糊查询  -->
+    <select id="gettExclusivepieceByName" parameterType="com.wqy.cinematickets.entity.Pagination" resultMap="exclusivePiece">
+        select * from exclusivepiece e join movie m on e.mid=m.mid where m.mname like CONCAT('%',#{name},'%') limit #{pageSize} offset #{pageIndex}
+    </select>
+    <!--  获取电影名模糊查询场次的数量  -->
+    <select id="getExclusivepieceByNameCount" parameterType="String" resultType="int">
+        select COUNT(*) from exclusivepiece e join movie m on e.mid=m.mid where m.mname like CONCAT('%',#{name},'%')
+    </select>
+    <!--  删除场次  -->
+    <delete id="delExclusivepieceById" parameterType="int">
+        delete from exclusivepiece where eid=#{eid}
+    </delete>
+    <!--  编辑场次  -->
 </mapper>

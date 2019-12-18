@@ -195,9 +195,9 @@ public class ManagerController {
     }
 
     //多表获取排片信息
-    @RequestMapping(value = "/getExclusivepieceInfo",method = RequestMethod.GET)
-    public Result<List<ExclusivePiece>> getExclusivepieceInfo(){
-        List<ExclusivePiece> exclusivePieceList = managerService.getExclusivepieceInfo();
+    @RequestMapping(value = "/getExclusivepieceInfo",method = RequestMethod.POST)
+    public Result<List<ExclusivePiece>> getExclusivepieceInfo(@RequestBody Pagination pagination){
+        List<ExclusivePiece> exclusivePieceList = managerService.getExclusivepieceInfo(pagination);
         Result<List<ExclusivePiece>> listResult = new Result<List<ExclusivePiece>>();
         if(exclusivePieceList!=null){
             listResult.setCode(0);
@@ -207,6 +207,39 @@ public class ManagerController {
             listResult.setMessage("没有查询到数据");
         }
         return listResult;
+    }
+
+    //获取场次数量
+    @RequestMapping(value = "/getExclusivepieceCount",method = RequestMethod.GET)
+    public int getExclusivepieceCount(){
+        return managerService.getExclusivepieceCount();
+    }
+
+    //根据电影名字对场次安排模糊查询
+    @RequestMapping(value = "/gettExclusivepieceByName",method = RequestMethod.POST)
+    public Result<List<ExclusivePiece>> gettExclusivepieceByName(@RequestBody Pagination pagination){
+        List<ExclusivePiece> exclusivePieceList = managerService.gettExclusivepieceByName(pagination);
+        Result<List<ExclusivePiece>> listResult = new Result<List<ExclusivePiece>>();
+        if(exclusivePieceList!=null){
+            listResult.setCode(0);
+            listResult.setBody(exclusivePieceList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //获取电影名模糊查询场次的数量
+    @RequestMapping(value = "/getExclusivepieceByNameCount",method = RequestMethod.GET)
+    public int getExclusivepieceByNameCount(String name){
+        return managerService.getExclusivepieceByNameCount(name);
+    }
+
+    //删除场次
+    @RequestMapping(value = "/delExclusivepieceById",method = RequestMethod.GET)
+    public Boolean delExclusivepieceById(int eid){
+        return managerService.delExclusivepieceById(eid);
     }
 
 }

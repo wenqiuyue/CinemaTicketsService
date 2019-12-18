@@ -179,7 +179,36 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     //多表获取排片信息
-    public List<ExclusivePiece> getExclusivepieceInfo(){
-        return managerDao.getExclusivepieceInfo();
+    public List<ExclusivePiece> getExclusivepieceInfo(Pagination pagination){
+        return managerDao.getExclusivepieceInfo(pagination);
+    }
+
+    @Override
+    //获取场次数量
+    public int getExclusivepieceCount(){
+        return managerDao.getExclusivepieceCount();
+    }
+
+    @Override
+    //根据电影名字对场次安排模糊查询
+    public List<ExclusivePiece> gettExclusivepieceByName(Pagination pagination){
+        return managerDao.gettExclusivepieceByName((pagination));
+    }
+
+    @Override
+    //获取电影名模糊查询场次的数量
+    public int getExclusivepieceByNameCount(String name){
+        return managerDao.getExclusivepieceByNameCount(name);
+    }
+
+    @Override
+    //删除场次
+    public Boolean delExclusivepieceById(int eid){
+        int i=managerDao.delExclusivepieceById(eid);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
