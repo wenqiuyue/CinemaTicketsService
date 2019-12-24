@@ -11,7 +11,7 @@ public class Film {
     private int mduration;
     private String mpicture;
     private String mintroduction;
-
+    private int score;
     public int getMid() {
         return mid;
     }
@@ -74,5 +74,13 @@ public class Film {
 
     public void setMintroduction(String mintroduction) {
         this.mintroduction = mintroduction;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

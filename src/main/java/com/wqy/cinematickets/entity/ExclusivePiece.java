@@ -13,6 +13,7 @@ public class ExclusivePiece {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date timeend;
     private Film film;
+
     public int getEid() {
         return eid;
     }

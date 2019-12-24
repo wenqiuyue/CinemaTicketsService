@@ -53,4 +53,6 @@ public interface ManagerDao {
     int getExclusivepieceByNameCount(String name);
     //删除场次
     int delExclusivepieceById(int eid);
+    //编辑场次
+    int updateExclusivepieceById(ExclusivePiece exclusivePiece);
 }

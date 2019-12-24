@@ -3,5 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wqy.cinematickets.dao.receptiondao.ReceptionDao">
-
+    <!--  获取近期热门影片  -->
+    <select id="getAllPopularRecentFilms" resultType="com.wqy.cinematickets.entity.Film">
+        select m.* from movie m,recentfilms r where m.mid=r.mid order by m.score desc limit 5
+    </select>
 </mapper>

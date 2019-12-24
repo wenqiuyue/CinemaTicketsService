@@ -22,7 +22,7 @@ public class ManagerController {
         Result<User> result=new Result<User>();
         if(user != null){
             result.setCode(0);
-            result.setBody(u);
+            result.setBody(user);
         }else {
             result.setCode(1000);
             result.setMessage("您的账号还未注册");
@@ -240,6 +240,12 @@ public class ManagerController {
     @RequestMapping(value = "/delExclusivepieceById",method = RequestMethod.GET)
     public Boolean delExclusivepieceById(int eid){
         return managerService.delExclusivepieceById(eid);
+    }
+
+    //编辑场次
+    @RequestMapping(value = "/UpdateExclusivepieceById",method = RequestMethod.POST)
+    public Boolean UpdateExclusivepieceById(@RequestBody ExclusivePiece exclusivePiece){
+        return managerService.UpdateExclusivepieceByIdService(exclusivePiece);
     }
 
 }

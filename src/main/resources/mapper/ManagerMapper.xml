@@ -53,7 +53,7 @@
     </delete>
     <!--  获取近期影片  -->
     <select id="getAllRecentFilms" resultType="com.wqy.cinematickets.entity.Film">
-        select m.* from movie m,recentfilms r where m.mid=r.mid
+        select m.* from movie m,recentfilms r where m.mid=r.mid order by r.rid desc
     </select>
     <!--  添加放映厅  -->
     <insert id="addProjectionHall" parameterType="com.wqy.cinematickets.entity.ProjectionHall">
@@ -98,7 +98,7 @@
     </resultMap>
     <!--  多表获取排片信息   -->
     <select id="getExclusivepieceInfo" resultMap="exclusivePiece" parameterType="com.wqy.cinematickets.entity.Pagination">
-        select * from exclusivepiece e join movie m on e.mid=m.mid limit #{pageSize} offset #{pageIndex}
+        select * from exclusivepiece e join movie m on e.mid=m.mid order by e.eid desc limit #{pageSize} offset #{pageIndex}
     </select>
     <!-- 获取场次的数量  -->
     <select id="getExclusivepieceCount" resultType="int">
@@ -117,4 +117,28 @@
         delete from exclusivepiece where eid=#{eid}
     </delete>
     <!--  编辑场次  -->
+    <update id="updateExclusivepieceById" parameterType="com.wqy.cinematickets.entity.ExclusivePiece">
+        update exclusivepiece set mid=#{mid},pid=#{pid},timebegin=#{timebegin},timeend=#{timeend} where eid=#{eid}
+    </update>
+<!--    <resultMap id="film" type="com.wqy.cinematickets.entity.Film">-->
+<!--        <id property="mid" column="mid"></id>-->
+<!--        <result property="mname" column="mname"></result>-->
+<!--        <result property="mtype" column="mtype"></result>-->
+<!--        <result property="mcountry" column="mcountry"></result>-->
+<!--        <result property="releasetime" column="releasetime"></result>-->
+<!--        <result property="mduration" column="mduration"></result>-->
+<!--        <result property="mpicture" column="mpicture"></result>-->
+<!--        <result property="mintroduction" column="mintroduction"></result>-->
+<!--        <association property="filmReview" javaType="com.wqy.cinematickets.entity.FilmReview">-->
+<!--            <id property="mid" column="mid"></id>-->
+<!--            <result property="uid" column="uid"></result>-->
+<!--            <result property="score" column="score"></result>-->
+<!--            <result property="evaluate" column="evaluate"></result>-->
+<!--            <result property="evaluatetime" column="evaluatetime"></result>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+<!--    &lt;!&ndash;  获取近期影片和影评  &ndash;&gt;-->
+<!--    <select id="getAllRecentFilmsAndReview" resultMap="film">-->
+<!--        select m.*,f.* from movie m,recentfilms r where m.mid=r.mid left join filmreview f on m.mid=f.mid-->
+<!--    </select>-->
 </mapper>

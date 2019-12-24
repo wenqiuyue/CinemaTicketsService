@@ -211,4 +211,15 @@ public class ManagerServiceImpl implements ManagerService {
             return false;
         }
     }
+
+    @Override
+    //编辑场次
+    public Boolean UpdateExclusivepieceByIdService(ExclusivePiece exclusivePiece){
+        int i = managerDao.updateExclusivepieceById(exclusivePiece);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

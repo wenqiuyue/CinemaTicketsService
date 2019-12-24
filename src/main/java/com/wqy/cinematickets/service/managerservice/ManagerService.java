@@ -53,4 +53,6 @@ public interface ManagerService {
     int getExclusivepieceByNameCount(String name);
     //删除场次
     Boolean delExclusivepieceById(int eid);
+    //编辑场次
+    Boolean UpdateExclusivepieceByIdService(ExclusivePiece exclusivePiece);
 }
