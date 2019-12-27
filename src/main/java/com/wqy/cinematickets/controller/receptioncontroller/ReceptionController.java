@@ -1,5 +1,6 @@
 package com.wqy.cinematickets.controller.receptioncontroller;
 
+import com.wqy.cinematickets.entity.ExclusivePiece;
 import com.wqy.cinematickets.entity.Film;
 import com.wqy.cinematickets.entity.Result;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
@@ -26,6 +27,36 @@ public class ReceptionController {
             listResult.setBody(filmList);
         }else {
             listResult.setCode(100);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //根据电影id查询电影信息
+    @RequestMapping(value = "/GetFilmById",method = RequestMethod.GET)
+    public Result<Film> GetFilmById(int mid){
+        Film film = receptionService.GetFilmByIdService(mid);
+        Result<Film> filmResult = new Result<Film>();
+        if(film != null){
+            filmResult.setCode(0);
+            filmResult.setBody(film);
+        }else {
+            filmResult.setCode(1000);
+            filmResult.setMessage("没有查询到数据");
+        }
+        return filmResult;
+    }
+
+    //根据电影id查询电影排片
+    @RequestMapping(value = "/GetExclusivePieceById",method = RequestMethod.GET)
+    public Result<List<ExclusivePiece>> GetExclusivePieceById(int mid){
+        List<ExclusivePiece> exclusivePieceList = receptionService.GetExclusivePieceByIdService(mid);
+        Result<List<ExclusivePiece>> listResult = new Result<List<ExclusivePiece>>();
+        if(exclusivePieceList != null){
+            listResult.setCode(0);
+            listResult.setBody(exclusivePieceList);
+        }else {
+            listResult.setCode(1000);
             listResult.setMessage("没有查询到数据");
         }
         return listResult;

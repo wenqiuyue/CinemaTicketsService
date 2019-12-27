@@ -13,7 +13,9 @@ public class ExclusivePiece {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date timeend;
     private Film film;
-
+    private String mlanguage;
+    private String meffect;
+    private String mprice;
     public int getEid() {
         return eid;
     }
@@ -60,5 +62,29 @@ public class ExclusivePiece {
 
     public void setFilm(Film film) {
         this.film = film;
+    }
+
+    public String getMlanguage() {
+        return mlanguage;
+    }
+
+    public void setMlanguage(String mlanguage) {
+        this.mlanguage = mlanguage;
+    }
+
+    public String getMeffect() {
+        return meffect;
+    }
+
+    public void setMeffect(String meffect) {
+        this.meffect = meffect;
+    }
+
+    public String getMprice() {
+        return mprice;
+    }
+
+    public void setMprice(String mprice) {
+        this.mprice = mprice;
     }
 }

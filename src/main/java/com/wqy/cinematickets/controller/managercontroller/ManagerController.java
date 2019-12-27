@@ -248,4 +248,10 @@ public class ManagerController {
         return managerService.UpdateExclusivepieceByIdService(exclusivePiece);
     }
 
+    //删除不是当日的排片数据
+    @RequestMapping(value = "/DelExclusivepieceNotTody",method = RequestMethod.GET)
+    public int DelExclusivepieceNotTody(){
+        return managerService.DelExclusivepieceNotTodyService();
+    }
+
 }

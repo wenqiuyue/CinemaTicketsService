@@ -55,4 +55,6 @@ public interface ManagerDao {
     int delExclusivepieceById(int eid);
     //编辑场次
     int updateExclusivepieceById(ExclusivePiece exclusivePiece);
+    //删除不是当日的排片数据
+    int delExclusivepieceNotTody();
 }

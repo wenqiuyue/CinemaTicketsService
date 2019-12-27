@@ -55,4 +55,6 @@ public interface ManagerService {
     Boolean delExclusivepieceById(int eid);
     //编辑场次
     Boolean UpdateExclusivepieceByIdService(ExclusivePiece exclusivePiece);
+    //删除不是当日的排片数据
+    int DelExclusivepieceNotTodyService();
 }

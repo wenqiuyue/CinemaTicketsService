@@ -222,4 +222,10 @@ public class ManagerServiceImpl implements ManagerService {
             return false;
         }
     }
+
+    @Override
+    //删除不是当日的排片数据
+    public int DelExclusivepieceNotTodyService(){
+        return managerDao.delExclusivepieceNotTody();
+    }
 }

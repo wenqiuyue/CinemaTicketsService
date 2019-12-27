@@ -7,4 +7,12 @@
     <select id="getAllPopularRecentFilms" resultType="com.wqy.cinematickets.entity.Film">
         select m.* from movie m,recentfilms r where m.mid=r.mid order by m.score desc limit 5
     </select>
+    <!-- 根据电影id查询电影信息  -->
+    <select id="getFilmById" parameterType="int" resultType="com.wqy.cinematickets.entity.Film">
+        select * from movie where mid=#{mid}
+    </select>
+    <!--  根据电影id查询电影排片  -->
+    <select id="getExclusivePieceById" resultType="com.wqy.cinematickets.entity.ExclusivePiece" parameterType="int">
+        select * from exclusivepiece where mid=#{mid}
+    </select>
 </mapper>
