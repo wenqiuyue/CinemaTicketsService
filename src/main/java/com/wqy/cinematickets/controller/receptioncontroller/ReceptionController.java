@@ -2,13 +2,17 @@ package com.wqy.cinematickets.controller.receptioncontroller;
 
 import com.wqy.cinematickets.entity.ExclusivePiece;
 import com.wqy.cinematickets.entity.Film;
+import com.wqy.cinematickets.entity.FilmReview;
 import com.wqy.cinematickets.entity.Result;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -55,6 +59,31 @@ public class ReceptionController {
         if(exclusivePieceList != null){
             listResult.setCode(0);
             listResult.setBody(exclusivePieceList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //添加影评
+    @RequestMapping(value = "/AddFilmReview",method = RequestMethod.POST)
+    public Boolean AddFilmReview(@RequestBody FilmReview filmReview){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = sdf.format(date);
+        filmReview.setEvaluatetime(str);
+        return receptionService.AddFilmReviewService(filmReview);
+    }
+
+    //根据影片id获取该影片影评
+    @RequestMapping(value = "/GetFilmReviewByMid",method = RequestMethod.GET)
+    public Result<List<Integer>> GetFilmReviewByMid(int mid){
+        List<Integer> list = receptionService.GetFilmReviewByMidService(mid);
+        Result<List<Integer>> listResult = new Result<List<Integer>>();
+        if(list != null){
+            listResult.setCode(0);
+            listResult.setBody(list);
         }else {
             listResult.setCode(1000);
             listResult.setMessage("没有查询到数据");

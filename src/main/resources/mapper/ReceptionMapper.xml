@@ -15,4 +15,12 @@
     <select id="getExclusivePieceById" resultType="com.wqy.cinematickets.entity.ExclusivePiece" parameterType="int">
         select * from exclusivepiece where mid=#{mid}
     </select>
+    <!-- 添加影评   -->
+    <insert id="addFilmReview" parameterType="com.wqy.cinematickets.entity.FilmReview">
+        insert into filmreview(mid,uid,score,evaluate,evaluatetime) value (#{mid},#{uid},#{score},#{evaluate},#{evaluatetime})
+    </insert>
+    <!--  根据影片id获取该影片影评  -->
+    <select id="getFilmReviewByMid" resultType="int" parameterType="int">
+        select score from filmreview where mid=#{mid}
+    </select>
 </mapper>
