@@ -17,4 +17,10 @@ public interface ReceptionService {
     Boolean AddFilmReviewService(FilmReview filmReview);
     //根据影片id获取该影片影评
     List<Integer> GetFilmReviewByMidService(int mid);
+    //获取所有影片分数
+    List<FilmReview> GetFilmScoreService();
+    //改变影片分数
+    Boolean UpdateFilmScoreService(Film film);
+    //根据影片id获取该影片所有评价
+    List<FilmReview> GetFilmReviewInfoByIdService(int mid);
 }

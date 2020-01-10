@@ -11,7 +11,7 @@ public class Film {
     private int mduration;
     private String mpicture;
     private String mintroduction;
-    private int score;
+    private float score;
     public int getMid() {
         return mid;
     }
@@ -76,11 +76,11 @@ public class Film {
         this.mintroduction = mintroduction;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 

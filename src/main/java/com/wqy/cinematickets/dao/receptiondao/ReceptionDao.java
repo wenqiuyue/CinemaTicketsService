@@ -17,4 +17,10 @@ public interface ReceptionDao {
     int addFilmReview(FilmReview filmReview);
     //根据影片id获取该影片影评
     List<Integer> getFilmReviewByMid(int mid);
+    //获取所有影片分数
+    List<FilmReview> getFilmScore();
+    //改变影片分数
+    int updateFilmScore(Film film);
+    //根据影片id获取该影片所有评价
+    List<FilmReview> getFilmReviewInfoById(int mid);
 }

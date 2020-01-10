@@ -19,8 +19,34 @@
     <insert id="addFilmReview" parameterType="com.wqy.cinematickets.entity.FilmReview">
         insert into filmreview(mid,uid,score,evaluate,evaluatetime) value (#{mid},#{uid},#{score},#{evaluate},#{evaluatetime})
     </insert>
-    <!--  根据影片id获取该影片影评  -->
+    <!--  根据影片id获取该影片影评分数  -->
     <select id="getFilmReviewByMid" resultType="int" parameterType="int">
         select score from filmreview where mid=#{mid}
+    </select>
+    <!--  获取所有影片分数  -->
+    <select id="getFilmScore"  resultType="com.wqy.cinematickets.entity.FilmReview">
+        select score,mid from filmreview
+    </select>
+    <!-- 改变影片分数  -->
+    <update id="updateFilmScore" parameterType="com.wqy.cinematickets.entity.Film">
+        update movie set score=#{score} where mid=#{mid}
+    </update>
+    <!-- 根据影片id获取该影片所有评价   -->
+    <resultMap id="filmreview" type="com.wqy.cinematickets.entity.FilmReview">
+        <id property="mid" column="mid"></id>
+        <result property="uid" column="uid"></result>
+        <result property="score" column="score"></result>
+        <result property="evaluate" column="evaluate"></result>
+        <result property="evaluatetime" column="evaluatetime"></result>
+        <association property="user" javaType="com.wqy.cinematickets.entity.User">
+            <id property="uid" column="uid"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+            <result property="upicture" column="upicture"></result>
+            <result property="utype" column="utype"></result>
+        </association>
+    </resultMap>
+    <select id="getFilmReviewInfoById" parameterType="int" resultMap="filmreview">
+        select f.* from filmreview f join user u on f.uid=u.uid where f.mid=#{mid}
     </select>
 </mapper>

@@ -90,4 +90,41 @@ public class ReceptionController {
         }
         return listResult;
     }
+
+    //获取所有影片分数
+    @RequestMapping(value = "/GetFilmScore",method = RequestMethod.GET)
+    public Result<List<FilmReview>> GetFilmScore(){
+        List<FilmReview> list = receptionService.GetFilmScoreService();
+        Result<List<FilmReview>> listResult = new Result<List<FilmReview>>();
+        if(list != null){
+            listResult.setCode(0);
+            listResult.setBody(list);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //改变影片分数
+    @RequestMapping(value = "/UpdateFilmScore",method = RequestMethod.POST)
+    public Boolean UpdateFilmScore(@RequestBody Film film){
+        return receptionService.UpdateFilmScoreService(film);
+    }
+
+    //根据影片id获取该影片所有评价
+    @RequestMapping(value = "/GetFilmReviewInfoById",method = RequestMethod.GET)
+    public List<FilmReview> GetFilmReviewInfoById(int mid){
+        List<FilmReview> list = receptionService.GetFilmReviewInfoByIdService(mid);
+//        System.out.print(list);
+//        Result<List<FilmReview>> listResult = new Result<List<FilmReview>>();
+//        if(list != null){
+//            listResult.setCode(0);
+//            listResult.setBody(list);
+//        }else {
+//            listResult.setCode(1000);
+//            listResult.setMessage("没有查询到数据");
+//        }
+        return list;
+    }
 }

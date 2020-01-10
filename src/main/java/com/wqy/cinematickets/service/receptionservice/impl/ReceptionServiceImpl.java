@@ -48,4 +48,27 @@ public class ReceptionServiceImpl implements ReceptionService {
     public List<Integer> GetFilmReviewByMidService(int mid){
         return receptionDao.getFilmReviewByMid(mid);
     }
+
+    @Override
+    //获取所有影片分数
+    public List<FilmReview> GetFilmScoreService(){
+        return receptionDao.getFilmScore();
+    }
+
+    @Override
+    //改变影片分数
+    public Boolean UpdateFilmScoreService(Film film){
+        int i = receptionDao.updateFilmScore(film);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //根据影片id获取该影片所有评价
+    public List<FilmReview> GetFilmReviewInfoByIdService(int mid){
+        return receptionDao.getFilmReviewInfoById(mid);
+    }
 }

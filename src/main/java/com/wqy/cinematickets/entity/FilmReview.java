@@ -6,7 +6,7 @@ public class FilmReview {
     private int score;
     private String evaluate;
     private String evaluatetime;
-
+    private User user;
     public int getMid() {
         return mid;
     }
@@ -45,5 +45,13 @@ public class FilmReview {
 
     public void setEvaluatetime(String evaluatetime) {
         this.evaluatetime = evaluatetime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
