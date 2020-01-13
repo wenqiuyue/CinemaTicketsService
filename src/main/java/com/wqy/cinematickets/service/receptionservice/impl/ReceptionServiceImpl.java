@@ -4,6 +4,7 @@ import com.wqy.cinematickets.dao.receptiondao.ReceptionDao;
 import com.wqy.cinematickets.entity.ExclusivePiece;
 import com.wqy.cinematickets.entity.Film;
 import com.wqy.cinematickets.entity.FilmReview;
+import com.wqy.cinematickets.entity.WantFilm;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,4 +72,40 @@ public class ReceptionServiceImpl implements ReceptionService {
     public List<FilmReview> GetFilmReviewInfoByIdService(int mid){
         return receptionDao.getFilmReviewInfoById(mid);
     }
+
+    @Override
+    //添加想看的影片
+    public int AddWantSeeFilmService(WantFilm wantFilm){
+        int code = 0;
+        int i = receptionDao.isAddWantSeeFilm(wantFilm);
+        if(i>0){
+            code = 1001; //想看的影片已存在
+        }else {
+            int j =receptionDao.addWantSeeFilm(wantFilm);
+            if(j>0){
+                code = 1002;  //添加成功
+            }else {
+                code = 1003;  //添加失败
+            }
+        }
+        return code;
+    }
+
+    @Override
+    //查询添加想看的影片是否已添加
+    public Boolean IsAddWantSeeFilmService(WantFilm wantFilm){
+        int i = receptionDao.isAddWantSeeFilm(wantFilm);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //根据排片id多表获取排片信息
+    public ExclusivePiece GetExclusivepieceInfoByEidService(int eid){
+        return receptionDao.getExclusivepieceInfoByEid(eid);
+    }
+
 }

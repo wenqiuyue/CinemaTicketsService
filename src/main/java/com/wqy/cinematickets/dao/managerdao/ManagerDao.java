@@ -57,4 +57,5 @@ public interface ManagerDao {
     int updateExclusivepieceById(ExclusivePiece exclusivePiece);
     //删除不是当日的排片数据
     int delExclusivepieceNotTody();
+
 }

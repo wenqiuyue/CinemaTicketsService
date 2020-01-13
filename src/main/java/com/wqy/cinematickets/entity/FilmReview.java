@@ -7,6 +7,8 @@ public class FilmReview {
     private String evaluate;
     private String evaluatetime;
     private User user;
+    private String username;
+    private String upicture;
     public int getMid() {
         return mid;
     }
@@ -53,5 +55,21 @@ public class FilmReview {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUpicture() {
+        return upicture;
+    }
+
+    public void setUpicture(String upicture) {
+        this.upicture = upicture;
     }
 }

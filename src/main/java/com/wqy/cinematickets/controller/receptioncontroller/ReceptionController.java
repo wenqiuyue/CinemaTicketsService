@@ -1,9 +1,6 @@
 package com.wqy.cinematickets.controller.receptioncontroller;
 
-import com.wqy.cinematickets.entity.ExclusivePiece;
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.FilmReview;
-import com.wqy.cinematickets.entity.Result;
+import com.wqy.cinematickets.entity.*;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -114,17 +111,56 @@ public class ReceptionController {
 
     //根据影片id获取该影片所有评价
     @RequestMapping(value = "/GetFilmReviewInfoById",method = RequestMethod.GET)
-    public List<FilmReview> GetFilmReviewInfoById(int mid){
+    public Result<List<FilmReview>> GetFilmReviewInfoById(int mid){
         List<FilmReview> list = receptionService.GetFilmReviewInfoByIdService(mid);
-//        System.out.print(list);
-//        Result<List<FilmReview>> listResult = new Result<List<FilmReview>>();
-//        if(list != null){
-//            listResult.setCode(0);
-//            listResult.setBody(list);
-//        }else {
-//            listResult.setCode(1000);
-//            listResult.setMessage("没有查询到数据");
-//        }
-        return list;
+        System.out.print(list);
+        Result<List<FilmReview>> listResult = new Result<List<FilmReview>>();
+        if(list != null){
+            listResult.setCode(0);
+            listResult.setBody(list);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //添加想看的影片
+    @RequestMapping(value = "/AddWantSeeFilm",method = RequestMethod.POST)
+    public Result AddWantSeeFilm(@RequestBody WantFilm wantFilm){
+        int i = receptionService.AddWantSeeFilmService(wantFilm);
+        Result result = new Result();
+        if(i == 1001){
+            result.setCode(i);
+            result.setMessage("想看的影片已存在");
+        }else if(i == 1002){
+            result.setCode(i);
+            result.setMessage("添加成功");
+        }else {
+            result.setCode(i);
+            result.setMessage("添加失败");
+        }
+        return result;
+    }
+
+    //查询添加想看的影片是否已添加
+    @RequestMapping(value = "/IsAddWantSeeFilm",method = RequestMethod.POST)
+    public Boolean IsAddWantSeeFilm(@RequestBody WantFilm wantFilm){
+        return receptionService.IsAddWantSeeFilmService(wantFilm);
+    }
+
+    //根据排片id多表获取排片信息
+    @RequestMapping(value = "/GetExclusivepieceInfoByEid",method = RequestMethod.GET)
+    public Result<ExclusivePiece> GetExclusivepieceInfoByEid(int eid){
+        ExclusivePiece exclusivePiece = receptionService.GetExclusivepieceInfoByEidService(eid);
+        Result<ExclusivePiece> exclusivePieceResult = new Result<ExclusivePiece>();
+        if(exclusivePiece != null){
+            exclusivePieceResult.setCode(0);
+            exclusivePieceResult.setBody(exclusivePiece);
+        }else {
+            exclusivePieceResult.setCode(1000);
+            exclusivePieceResult.setMessage("没有查询到数据");
+        }
+        return exclusivePieceResult;
     }
 }

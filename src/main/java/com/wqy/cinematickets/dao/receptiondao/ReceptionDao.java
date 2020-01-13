@@ -3,6 +3,7 @@ package com.wqy.cinematickets.dao.receptiondao;
 import com.wqy.cinematickets.entity.ExclusivePiece;
 import com.wqy.cinematickets.entity.Film;
 import com.wqy.cinematickets.entity.FilmReview;
+import com.wqy.cinematickets.entity.WantFilm;
 
 import java.util.List;
 
@@ -23,4 +24,10 @@ public interface ReceptionDao {
     int updateFilmScore(Film film);
     //根据影片id获取该影片所有评价
     List<FilmReview> getFilmReviewInfoById(int mid);
+    //添加想看的影片
+    int addWantSeeFilm(WantFilm wantFilm);
+    //查询添加想看的影片是否已添加
+    int isAddWantSeeFilm(WantFilm wantFilm);
+    //根据排片id多表获取排片信息
+    ExclusivePiece getExclusivepieceInfoByEid(int eid);
 }

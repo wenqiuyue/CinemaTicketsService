@@ -32,21 +32,54 @@
         update movie set score=#{score} where mid=#{mid}
     </update>
     <!-- 根据影片id获取该影片所有评价   -->
-    <resultMap id="filmreview" type="com.wqy.cinematickets.entity.FilmReview">
-        <id property="mid" column="mid"></id>
-        <result property="uid" column="uid"></result>
-        <result property="score" column="score"></result>
-        <result property="evaluate" column="evaluate"></result>
-        <result property="evaluatetime" column="evaluatetime"></result>
-        <association property="user" javaType="com.wqy.cinematickets.entity.User">
-            <id property="uid" column="uid"></id>
-            <result property="username" column="username"></result>
-            <result property="password" column="password"></result>
-            <result property="upicture" column="upicture"></result>
-            <result property="utype" column="utype"></result>
+<!--    <resultMap id="allfilmreview" type="com.wqy.cinematickets.entity.FilmReview">-->
+<!--        <id property="mid" column="mid"></id>-->
+<!--        <result property="uid" column="uid"></result>-->
+<!--        <result property="score" column="score"></result>-->
+<!--        <result property="evaluate" column="evaluate"></result>-->
+<!--        <result property="evaluatetime" column="evaluatetime"></result>-->
+<!--        <association property="user" javaType="com.wqy.cinematickets.entity.User">-->
+<!--            <id property="uid" column="uid"></id>-->
+<!--            <result property="username" column="username"></result>-->
+<!--            <result property="password" column="password"></result>-->
+<!--            <result property="upicture" column="upicture"></result>-->
+<!--            <result property="utype" column="utype"></result>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <!-- 根据影片id获取该影片所有评价   -->
+    <select id="getFilmReviewInfoById" parameterType="int" resultType="com.wqy.cinematickets.entity.FilmReview">
+        select * from filmreview f join user u on f.uid=u.uid where mid=#{mid}
+    </select>
+    <!--  添加想看的影片  -->
+    <insert id="addWantSeeFilm" parameterType="com.wqy.cinematickets.entity.WantFilm">
+        insert into wanttosee(uid,mid) value (#{uid},#{mid})
+    </insert>
+    <!--  查询添加想看的影片是否已添加  -->
+    <select id="isAddWantSeeFilm" parameterType="com.wqy.cinematickets.entity.WantFilm" resultType="int">
+        select COUNT(*) from wanttosee where uid=#{uid} and mid=#{mid}
+    </select>
+    <resultMap id="getexclusivePiece" type="com.wqy.cinematickets.entity.ExclusivePiece">
+        <id property="eid" column="eid"></id>
+        <result property="mid" column="mid"></result>
+        <result property="pid" column="pid"></result>
+        <result property="timebegin" column="timebegin"></result>
+        <result property="timeend" column="timeend"></result>
+        <result property="mlanguage" column="mlanguage"></result>
+        <result property="meffect" column="meffect"></result>
+        <result property="mprice" column="mprice"></result>
+        <association property="film" javaType="com.wqy.cinematickets.entity.Film">
+            <id property="mid" column="mid"></id>
+            <result property="mname" column="mname"></result>
+            <result property="mtype" column="mtype"></result>
+            <result property="mcountry" column="mcountry"></result>
+            <result property="releasetime" column="releasetime"></result>
+            <result property="mduration" column="mduration"></result>
+            <result property="mpicture" column="mpicture"></result>
+            <result property="mintroduction" column="mintroduction"></result>
         </association>
     </resultMap>
-    <select id="getFilmReviewInfoById" parameterType="int" resultMap="filmreview">
-        select f.* from filmreview f join user u on f.uid=u.uid where f.mid=#{mid}
+    <!--  根据排片id多表获取排片信息   -->
+    <select id="getExclusivepieceInfoByEid" resultMap="getexclusivePiece" parameterType="int">
+        select * from exclusivepiece e join movie m on e.mid=m.mid where e.eid=#{eid}
     </select>
 </mapper>
