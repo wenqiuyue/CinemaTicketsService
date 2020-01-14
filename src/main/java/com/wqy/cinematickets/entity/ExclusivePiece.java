@@ -16,6 +16,7 @@ public class ExclusivePiece {
     private String mlanguage;
     private String meffect;
     private String mprice;
+    private ProjectionHall projectionHall;
     public int getEid() {
         return eid;
     }
@@ -86,5 +87,13 @@ public class ExclusivePiece {
 
     public void setMprice(String mprice) {
         this.mprice = mprice;
+    }
+
+    public ProjectionHall getProjectionHall() {
+        return projectionHall;
+    }
+
+    public void setProjectionHall(ProjectionHall projectionHall) {
+        this.projectionHall = projectionHall;
     }
 }

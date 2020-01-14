@@ -77,9 +77,14 @@
             <result property="mpicture" column="mpicture"></result>
             <result property="mintroduction" column="mintroduction"></result>
         </association>
+        <association property="projectionHall" javaType="com.wqy.cinematickets.entity.ProjectionHall">
+            <id property="pid" column="pid"></id>
+            <result property="mrow" column="mrow"></result>
+            <result property="mcolumn" column="mcolumn"></result>
+        </association>
     </resultMap>
     <!--  根据排片id多表获取排片信息   -->
     <select id="getExclusivepieceInfoByEid" resultMap="getexclusivePiece" parameterType="int">
-        select * from exclusivepiece e join movie m on e.mid=m.mid where e.eid=#{eid}
+        select * from exclusivepiece e left join movie m on e.mid=m.mid left join projectionhall p on e.pid=p.pid where e.eid=#{eid}
     </select>
 </mapper>
