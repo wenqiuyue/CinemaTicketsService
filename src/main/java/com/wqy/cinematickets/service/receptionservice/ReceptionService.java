@@ -1,9 +1,6 @@
 package com.wqy.cinematickets.service.receptionservice;
 
-import com.wqy.cinematickets.entity.ExclusivePiece;
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.FilmReview;
-import com.wqy.cinematickets.entity.WantFilm;
+import com.wqy.cinematickets.entity.*;
 
 import java.util.List;
 
@@ -30,5 +27,7 @@ public interface ReceptionService {
     Boolean IsAddWantSeeFilmService(WantFilm wantFilm);
     //根据排片id多表获取排片信息
     ExclusivePiece GetExclusivepieceInfoByEidService(int eid);
+    //插入订单
+    Boolean AddOrderService(Order order);
 
 }

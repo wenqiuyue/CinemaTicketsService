@@ -1,10 +1,7 @@
 package com.wqy.cinematickets.service.receptionservice.impl;
 
 import com.wqy.cinematickets.dao.receptiondao.ReceptionDao;
-import com.wqy.cinematickets.entity.ExclusivePiece;
-import com.wqy.cinematickets.entity.Film;
-import com.wqy.cinematickets.entity.FilmReview;
-import com.wqy.cinematickets.entity.WantFilm;
+import com.wqy.cinematickets.entity.*;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -106,6 +103,30 @@ public class ReceptionServiceImpl implements ReceptionService {
     //根据排片id多表获取排片信息
     public ExclusivePiece GetExclusivepieceInfoByEidService(int eid){
         return receptionDao.getExclusivepieceInfoByEid(eid);
+    }
+
+    @Override
+    //插入订单
+    public Boolean AddOrderService(Order order){
+        //插入订单信息
+        int i = receptionDao.addOrder(order);
+        Boolean isAdd = false;
+        if(i>0){
+            //插入已选的座位
+           for(SeatSelection seatSelection:order.getSeatSelectionList()){
+                seatSelection.setOid(order.getOid());
+                seatSelection.setEid(order.getEid());
+               int j=receptionDao.addSeatselection(seatSelection);
+               if(j>0){
+                   isAdd = true;
+               }else {
+                  isAdd = false;
+               }
+           }
+        }else {
+            isAdd = false;
+        }
+        return isAdd;
     }
 
 }

@@ -87,4 +87,13 @@
     <select id="getExclusivepieceInfoByEid" resultMap="getexclusivePiece" parameterType="int">
         select * from exclusivepiece e left join movie m on e.mid=m.mid left join projectionhall p on e.pid=p.pid where e.eid=#{eid}
     </select>
+    <!--  插入订单   -->
+    <insert id="addOrder" parameterType="com.wqy.cinematickets.entity.Order">
+        insert into uorder(oid,eid,uid,oprice) value (#{oid},#{eid},#{uid},#{oprice})
+    </insert>
+    <!-- 插入订单座位   -->
+    <insert id="addSeatselection" parameterType="com.wqy.cinematickets.entity.SeatSelection">
+        insert into seatselection(oid,rowsel,columnsel,eid) value (#{oid},#{rowsel},#{columnsel},#{eid})
+    </insert>
+
 </mapper>

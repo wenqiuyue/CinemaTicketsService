@@ -2,6 +2,7 @@ package com.wqy.cinematickets.controller.receptioncontroller;
 
 import com.wqy.cinematickets.entity.*;
 import com.wqy.cinematickets.service.receptionservice.ReceptionService;
+import com.wqy.cinematickets.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ReceptionController {
     @Autowired
     private ReceptionService receptionService;
+
 
     //获取近期热门影片
     @RequestMapping(value = "/GetAllPopularRecentFilms",method = RequestMethod.GET)
@@ -162,5 +164,13 @@ public class ReceptionController {
             exclusivePieceResult.setMessage("没有查询到数据");
         }
         return exclusivePieceResult;
+    }
+
+    //插入订单
+    @RequestMapping(value = "/AddOrder",method = RequestMethod.POST)
+    public Boolean AddOrder(@RequestBody Order order){
+        Date d = new Date();
+        order.setOid(d.getTime());
+        return receptionService.AddOrderService(order);
     }
 }
