@@ -3,7 +3,7 @@ package com.wqy.cinematickets.entity;
 public class SeatSelection {
     private int rowsel;
     private int columnsel;
-    private long oid;
+    private String oid;
     private int eid;
 
     public int getRowsel() {
@@ -22,11 +22,11 @@ public class SeatSelection {
         this.columnsel = columnsel;
     }
 
-    public long getOid() {
+    public String getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(String oid) {
         this.oid = oid;
     }
 

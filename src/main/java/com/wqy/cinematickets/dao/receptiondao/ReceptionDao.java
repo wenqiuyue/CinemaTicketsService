@@ -31,4 +31,6 @@ public interface ReceptionDao {
     int addOrder(Order order);
     //插入订单座位
     int addSeatselection(SeatSelection seatSelection);
+    //获取某场次已被选的座位
+    List<SeatSelection> getSeatselectionByEid(int eid);
 }

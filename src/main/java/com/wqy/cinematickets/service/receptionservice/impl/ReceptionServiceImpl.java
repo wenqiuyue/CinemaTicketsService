@@ -129,4 +129,10 @@ public class ReceptionServiceImpl implements ReceptionService {
         return isAdd;
     }
 
+    @Override
+    //获取某场次已被选的座位
+    public List<SeatSelection> GetSeatselectionByEidService(int eid){
+        return receptionDao.getSeatselectionByEid(eid);
+    }
+
 }

@@ -168,9 +168,33 @@ public class ReceptionController {
 
     //插入订单
     @RequestMapping(value = "/AddOrder",method = RequestMethod.POST)
-    public Boolean AddOrder(@RequestBody Order order){
+    public Result<String> AddOrder(@RequestBody Order order){
         Date d = new Date();
-        order.setOid(d.getTime());
-        return receptionService.AddOrderService(order);
+        order.setOid(Long.toString(d.getTime())+""+Integer.toString(order.getEid()));
+        Boolean isOrder = receptionService.AddOrderService(order);
+        Result<String> stringResult = new Result<String>();
+        if(isOrder == true){
+            stringResult.setCode(0);
+            stringResult.setBody(order.getOid());
+        }else {
+            stringResult.setCode(1000);
+            stringResult.setMessage("订单生成失败");
+        }
+        return stringResult;
+    }
+
+    //获取某场次已被选的座位
+    @RequestMapping(value = "/GetSeatselectionByEid",method = RequestMethod.GET)
+    public Result<List<SeatSelection>> GetSeatselectionByEid(int eid){
+        Result<List<SeatSelection>> listResult = new Result<List<SeatSelection>> ();
+        List<SeatSelection> seatSelectionList = receptionService.GetSeatselectionByEidService(eid);
+        if(seatSelectionList!=null){
+            listResult.setCode(0);
+            listResult.setBody(seatSelectionList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
     }
 }

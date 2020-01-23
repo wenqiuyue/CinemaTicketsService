@@ -3,16 +3,16 @@ package com.wqy.cinematickets.entity;
 import java.util.List;
 
 public class Order {
-    private long oid;
+    private String oid;
     private int eid;
     private int uid;
     private String oprice;
     private List<SeatSelection> seatSelectionList;
-    public long getOid() {
+    public String getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(String oid) {
         this.oid = oid;
     }
 

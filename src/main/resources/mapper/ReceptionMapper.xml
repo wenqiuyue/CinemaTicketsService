@@ -95,5 +95,8 @@
     <insert id="addSeatselection" parameterType="com.wqy.cinematickets.entity.SeatSelection">
         insert into seatselection(oid,rowsel,columnsel,eid) value (#{oid},#{rowsel},#{columnsel},#{eid})
     </insert>
-
+    <!-- 获取某场次已被选的座位  -->
+    <select id="getSeatselectionByEid" parameterType="int" resultType="com.wqy.cinematickets.entity.SeatSelection">
+        select * from seatselection where eid=#{eid}
+    </select>
 </mapper>

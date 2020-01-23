@@ -29,5 +29,7 @@ public interface ReceptionService {
     ExclusivePiece GetExclusivepieceInfoByEidService(int eid);
     //插入订单
     Boolean AddOrderService(Order order);
+    //获取某场次已被选的座位
+    List<SeatSelection> GetSeatselectionByEidService(int eid);
 
 }
