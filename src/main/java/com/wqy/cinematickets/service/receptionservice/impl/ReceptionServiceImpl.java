@@ -135,4 +135,14 @@ public class ReceptionServiceImpl implements ReceptionService {
         return receptionDao.getSeatselectionByEid(eid);
     }
 
+    @Override
+    //根据订单编号获取订单信息
+    public Order GetOrderInfoService(String oid){
+        Order order = receptionDao.getOrderInfo(oid);
+        List<SeatSelection> seatList = receptionDao.getSeatselectionByOid(oid);
+        order.setSeatSelectionList(seatList);
+        return order;
+    }
+
+
 }

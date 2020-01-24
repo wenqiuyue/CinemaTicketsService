@@ -8,6 +8,8 @@ public class Order {
     private int uid;
     private String oprice;
     private List<SeatSelection> seatSelectionList;
+    private ExclusivePiece exclusivePiece;
+    private Film film;
     public String getOid() {
         return oid;
     }
@@ -46,5 +48,21 @@ public class Order {
 
     public void setSeatSelectionList(List<SeatSelection> seatSelectionList) {
         this.seatSelectionList = seatSelectionList;
+    }
+
+    public ExclusivePiece getExclusivePiece() {
+        return exclusivePiece;
+    }
+
+    public void setExclusivePiece(ExclusivePiece exclusivePiece) {
+        this.exclusivePiece = exclusivePiece;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 }

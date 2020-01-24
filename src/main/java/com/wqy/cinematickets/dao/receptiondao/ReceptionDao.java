@@ -33,4 +33,8 @@ public interface ReceptionDao {
     int addSeatselection(SeatSelection seatSelection);
     //获取某场次已被选的座位
     List<SeatSelection> getSeatselectionByEid(int eid);
+    //根据订单编号获取订单信息
+    Order getOrderInfo(String oid);
+    //根据订单编号查询座位
+    List<SeatSelection> getSeatselectionByOid(String oid);
 }

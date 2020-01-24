@@ -99,4 +99,34 @@
     <select id="getSeatselectionByEid" parameterType="int" resultType="com.wqy.cinematickets.entity.SeatSelection">
         select * from seatselection where eid=#{eid}
     </select>
+    <resultMap id="order" type="com.wqy.cinematickets.entity.Order">
+        <id property="oid" column="oid"></id>
+        <result property="eid" column="eid"></result>
+        <result property="uid" column="uid"></result>
+        <result property="oprice" column="oprice"></result>
+        <association property="exclusivePiece" javaType="com.wqy.cinematickets.entity.ExclusivePiece">
+            <id property="eid" column="eid"></id>
+            <result property="mid" column="mid"></result>
+            <result property="pid" column="pid"></result>
+            <result property="timebegin" column="timebegin"></result>
+            <result property="timeend" column="timeend"></result>
+            <result property="mlanguage" column="mlanguage"></result>
+            <result property="meffect" column="meffect"></result>
+            <result property="mprice" column="mprice"></result>
+        </association>
+        <association property="film" javaType="com.wqy.cinematickets.entity.Film">
+            <id property="mid" column="mid"></id>
+            <result property="mname" column="mname"></result>
+            <result property="mtype" column="mtype"></result>
+            <result property="mcountry" column="mcountry"></result>
+        </association>
+    </resultMap>
+    <!-- 根据订单编号获取订单信息   -->
+    <select id="getOrderInfo" resultMap="order" parameterType="String">
+        select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.oid=#{oid}
+    </select>
+    <!-- 根据订单编号查询座位   -->
+    <select id="getSeatselectionByOid" parameterType="String" resultType="com.wqy.cinematickets.entity.SeatSelection">
+        select * from seatselection where oid=#{oid}
+    </select>
 </mapper>

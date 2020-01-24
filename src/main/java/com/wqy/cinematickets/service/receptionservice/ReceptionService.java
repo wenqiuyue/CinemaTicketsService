@@ -31,5 +31,7 @@ public interface ReceptionService {
     Boolean AddOrderService(Order order);
     //获取某场次已被选的座位
     List<SeatSelection> GetSeatselectionByEidService(int eid);
+    //根据订单编号获取订单信息
+    Order GetOrderInfoService(String oid);
 
 }

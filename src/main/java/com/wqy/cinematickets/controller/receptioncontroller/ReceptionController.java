@@ -197,4 +197,19 @@ public class ReceptionController {
         }
         return listResult;
     }
+
+    //根据订单编号获取订单信息
+    @RequestMapping(value = "/GetOrderInfo",method = RequestMethod.GET)
+    public Result<Order> GetOrderInfo(String oid){
+       Order order = receptionService.GetOrderInfoService(oid);
+        Result<Order> orderResult = new Result<Order>();
+        if(order != null){
+            orderResult.setCode(0);
+            orderResult.setBody(order);
+        }else {
+            orderResult.setCode(1000);
+            orderResult.setMessage("没有查询到数据");
+        }
+        return orderResult;
+    }
 }
