@@ -144,5 +144,11 @@ public class ReceptionServiceImpl implements ReceptionService {
         return order;
     }
 
+    @Override
+    //根据用户id查询用户姓名和头像
+    public User GetNameAndPicByIdService(int id){
+        return receptionDao.getNameAndPicById(id);
+    }
+
 
 }

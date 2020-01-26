@@ -129,4 +129,8 @@
     <select id="getSeatselectionByOid" parameterType="String" resultType="com.wqy.cinematickets.entity.SeatSelection">
         select * from seatselection where oid=#{oid}
     </select>
+    <!-- 根据用户id查询用户姓名和头像   -->
+    <select id="getNameAndPicById" parameterType="int" resultType="com.wqy.cinematickets.entity.User">
+        select username,upicture from user where uid=#{uid}
+    </select>
 </mapper>

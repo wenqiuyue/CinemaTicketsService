@@ -33,5 +33,7 @@ public interface ReceptionService {
     List<SeatSelection> GetSeatselectionByEidService(int eid);
     //根据订单编号获取订单信息
     Order GetOrderInfoService(String oid);
+    //根据用户id查询用户姓名和头像
+    User GetNameAndPicByIdService(int id);
 
 }

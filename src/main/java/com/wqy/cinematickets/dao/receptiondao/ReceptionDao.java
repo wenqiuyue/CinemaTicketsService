@@ -37,4 +37,6 @@ public interface ReceptionDao {
     Order getOrderInfo(String oid);
     //根据订单编号查询座位
     List<SeatSelection> getSeatselectionByOid(String oid);
+    //根据用户id查询用户姓名和头像
+    User getNameAndPicById(int id);
 }

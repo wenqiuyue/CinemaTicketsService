@@ -212,4 +212,19 @@ public class ReceptionController {
         }
         return orderResult;
     }
+
+    //根据用户id查询用户姓名和头像
+    @RequestMapping(value = "/GetNameAndPicById",method = RequestMethod.GET)
+    public Result<User> GetNameAndPicById(int uid){
+        User user = receptionService.GetNameAndPicByIdService(uid);
+        Result<User> userResult = new Result<User>();
+        if(user != null){
+            userResult.setCode(0);
+            userResult.setBody(user);
+        }else {
+            userResult.setCode(1000);
+            userResult.setMessage("没有查询到数据");
+        }
+        return userResult;
+    }
 }
