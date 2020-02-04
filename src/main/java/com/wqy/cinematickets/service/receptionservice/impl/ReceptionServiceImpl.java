@@ -150,5 +150,22 @@ public class ReceptionServiceImpl implements ReceptionService {
         return receptionDao.getNameAndPicById(id);
     }
 
+    @Override
+    //修改用户头像和用户名
+    public Boolean UpdatePicAndNameService(User user){
+        int i = receptionDao.updatePicAndName(user);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //查询想看的电影
+    public List<Film> GetMyLikeFilmService(int uid){
+        return receptionDao.getMyLikeFilm(uid);
+    }
+
 
 }

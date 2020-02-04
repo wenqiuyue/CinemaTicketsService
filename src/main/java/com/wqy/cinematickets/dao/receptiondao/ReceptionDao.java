@@ -39,4 +39,8 @@ public interface ReceptionDao {
     List<SeatSelection> getSeatselectionByOid(String oid);
     //根据用户id查询用户姓名和头像
     User getNameAndPicById(int id);
+    //修改用户头像和用户名
+    int updatePicAndName(User user);
+    //查询想看的电影
+    List<Film> getMyLikeFilm(int uid);
 }

@@ -35,5 +35,9 @@ public interface ReceptionService {
     Order GetOrderInfoService(String oid);
     //根据用户id查询用户姓名和头像
     User GetNameAndPicByIdService(int id);
+    //修改用户头像和用户名
+    Boolean UpdatePicAndNameService(User user);
+    //查询想看的电影
+    List<Film> GetMyLikeFilmService(int uid);
 
 }

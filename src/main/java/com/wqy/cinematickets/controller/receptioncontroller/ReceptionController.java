@@ -227,4 +227,25 @@ public class ReceptionController {
         }
         return userResult;
     }
+
+    //修改用户头像和用户名
+    @RequestMapping(value = "/UpdatePicAndName",method = RequestMethod.POST)
+    public Boolean UpdatePicAndName(@RequestBody User user){
+        return receptionService.UpdatePicAndNameService(user);
+    }
+
+    //查询想看的电影
+    @RequestMapping(value = "/GetMyLikeFilm",method = RequestMethod.GET)
+    public Result<List<Film>> GetMyLikeFilm(int uid){
+        Result<List<Film>> listResult = new Result<List<Film>>();
+        List<Film> filmList = receptionService.GetMyLikeFilmService(uid);
+        if(filmList != null){
+            listResult.setCode(0);
+            listResult.setBody(filmList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
 }

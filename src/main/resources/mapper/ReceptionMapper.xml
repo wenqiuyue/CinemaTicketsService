@@ -133,4 +133,12 @@
     <select id="getNameAndPicById" parameterType="int" resultType="com.wqy.cinematickets.entity.User">
         select username,upicture from user where uid=#{uid}
     </select>
+    <!-- 修改用户头像和用户名   -->
+    <update id="updatePicAndName" parameterType="com.wqy.cinematickets.entity.User">
+        update user set username=#{username},upicture=#{upicture} where uid=#{uid}
+    </update>
+    <!-- 查询想看的电影  -->
+    <select id="getMyLikeFilm" parameterType="int" resultType="com.wqy.cinematickets.entity.Film">
+        select m.* from wanttosee w left join movie m on w.mid=m.mid where w.uid=#{uid}
+    </select>
 </mapper>
