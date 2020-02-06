@@ -101,11 +101,11 @@
     </resultMap>
     <!--  多表获取排片信息   -->
     <select id="getExclusivepieceInfo" resultMap="exclusivePiece" parameterType="com.wqy.cinematickets.entity.Pagination">
-        select * from exclusivepiece e join movie m on e.mid=m.mid order by e.eid desc limit #{pageSize} offset #{pageIndex}
+        select * from exclusivepiece e join movie m on e.mid=m.mid where DATE_FORMAT(e.timebegin,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') order by e.eid desc limit #{pageSize} offset #{pageIndex}
     </select>
     <!-- 获取场次的数量  -->
     <select id="getExclusivepieceCount" resultType="int">
-        select COUNT(*) from exclusivepiece
+        select COUNT(*) from exclusivepiece where DATE_FORMAT(timebegin,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
     </select>
     <!--  根据电影名字对场次安排模糊查询  -->
     <select id="gettExclusivepieceByName" parameterType="com.wqy.cinematickets.entity.Pagination" resultMap="exclusivePiece">

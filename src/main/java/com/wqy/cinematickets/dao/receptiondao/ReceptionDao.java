@@ -43,4 +43,8 @@ public interface ReceptionDao {
     int updatePicAndName(User user);
     //查询想看的电影
     List<Film> getMyLikeFilm(int uid);
+    //修改密码
+    int updatePassword(User user);
+    //根据用户id获取订单列表
+    List<Order> getUserOrderList(int uid);
 }

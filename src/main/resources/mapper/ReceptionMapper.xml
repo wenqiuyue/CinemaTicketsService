@@ -13,7 +13,7 @@
     </select>
     <!--  根据电影id查询电影排片  -->
     <select id="getExclusivePieceById" resultType="com.wqy.cinematickets.entity.ExclusivePiece" parameterType="int">
-        select * from exclusivepiece where mid=#{mid}
+        select * from exclusivepiece where mid=#{mid} and DATE_FORMAT(timebegin,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
     </select>
     <!-- 添加影评   -->
     <insert id="addFilmReview" parameterType="com.wqy.cinematickets.entity.FilmReview">
@@ -119,11 +119,18 @@
             <result property="mname" column="mname"></result>
             <result property="mtype" column="mtype"></result>
             <result property="mcountry" column="mcountry"></result>
+            <result property="mpicture" column="mpicture"></result>
+            <result property="releasetime" column="releasetime"></result>
+            <result property="mintroduction" column="mintroduction"></result>
         </association>
     </resultMap>
     <!-- 根据订单编号获取订单信息   -->
     <select id="getOrderInfo" resultMap="order" parameterType="String">
         select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.oid=#{oid}
+    </select>
+    <!-- 根据用户id获取订单列表 -->
+    <select id="getUserOrderList" resultMap="order" parameterType="int">
+        select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.uid=#{uid}
     </select>
     <!-- 根据订单编号查询座位   -->
     <select id="getSeatselectionByOid" parameterType="String" resultType="com.wqy.cinematickets.entity.SeatSelection">
@@ -141,4 +148,8 @@
     <select id="getMyLikeFilm" parameterType="int" resultType="com.wqy.cinematickets.entity.Film">
         select m.* from wanttosee w left join movie m on w.mid=m.mid where w.uid=#{uid}
     </select>
+    <!--  修改密码  -->
+    <update id="updatePassword" parameterType="com.wqy.cinematickets.entity.User">
+        update user set password=#{password} where uid=#{uid}
+    </update>
 </mapper>

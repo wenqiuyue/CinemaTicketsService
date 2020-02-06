@@ -39,5 +39,9 @@ public interface ReceptionService {
     Boolean UpdatePicAndNameService(User user);
     //查询想看的电影
     List<Film> GetMyLikeFilmService(int uid);
+    //修改密码
+    Boolean UpdatePasswordService(User user);
+    //根据用户id获取订单列表
+    List<Order> GetUserOrderListService(int uid);
 
 }

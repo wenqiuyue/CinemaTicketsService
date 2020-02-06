@@ -248,4 +248,25 @@ public class ReceptionController {
         }
         return listResult;
     }
+
+    //修改密码
+    @RequestMapping(value = "/UpdatePassword",method = RequestMethod.POST)
+    public Boolean UpdatePassword(@RequestBody User user){
+        return receptionService.UpdatePasswordService(user);
+    }
+
+    //根据用户id获取订单列表
+    @RequestMapping(value = "/GetUserOrderList",method = RequestMethod.GET)
+    public Result<List<Order>> GetUserOrderList(int uid){
+        Result<List<Order>> listResult = new Result<List<Order>>();
+        List<Order> orderList = receptionService.GetUserOrderListService(uid);
+        if(orderList != null){
+            listResult.setCode(0);
+            listResult.setBody(orderList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
 }

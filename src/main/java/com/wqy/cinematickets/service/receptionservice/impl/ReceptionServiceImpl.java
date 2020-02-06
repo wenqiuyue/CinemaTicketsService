@@ -167,5 +167,20 @@ public class ReceptionServiceImpl implements ReceptionService {
         return receptionDao.getMyLikeFilm(uid);
     }
 
+    @Override
+    //修改密码
+    public Boolean UpdatePasswordService(User user){
+        int i = receptionDao.updatePassword(user);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
+    @Override
+    //根据用户id获取订单列表
+    public List<Order> GetUserOrderListService(int uid){
+        return receptionDao.getUserOrderList(uid);
+    }
 }

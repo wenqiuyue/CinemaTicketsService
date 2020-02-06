@@ -3,7 +3,7 @@ package com.wqy.cinematickets.entity;
 public class User {
     private int uid;
     private String username;
-    private int password;
+    private String password;
     private String upicture;
     private int utype;
 
@@ -23,11 +23,11 @@ public class User {
         this.username = username;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
