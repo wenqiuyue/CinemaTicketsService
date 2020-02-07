@@ -130,7 +130,7 @@
     </select>
     <!-- 根据用户id获取订单列表 -->
     <select id="getUserOrderList" resultMap="order" parameterType="int">
-        select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.uid=#{uid}
+        select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.uid=#{uid} order by o.oid desc
     </select>
     <!-- 根据订单编号查询座位   -->
     <select id="getSeatselectionByOid" parameterType="String" resultType="com.wqy.cinematickets.entity.SeatSelection">
