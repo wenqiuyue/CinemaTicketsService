@@ -31,6 +31,8 @@ public interface ManagerDao {
     int delRecentFilmsById(int mid);
     //获取近期影片
     List<Film> getAllRecentFilms();
+    //近期影片票房
+    int getFilmNum(int eid);
     //添加放映厅
     int addProjectionHall(ProjectionHall projectionHall);
     //修改放映厅

@@ -55,6 +55,10 @@
     <select id="getAllRecentFilms" resultType="com.wqy.cinematickets.entity.Film">
         select m.* from movie m,recentfilms r where m.mid=r.mid order by r.rid desc
     </select>
+    <!-- 票房查询   -->
+    <select id="getFilmNum" parameterType="int" resultType="int">
+        select COUNT (*) from seatselection where eid = #{eid}
+    </select>
     <!--  添加放映厅  -->
     <insert id="addProjectionHall" parameterType="com.wqy.cinematickets.entity.ProjectionHall">
         insert into projectionhall(mrow,mcolumn) value(#{mrow},#{mcolumn})
@@ -148,4 +152,5 @@
 <!--    <select id="getAllRecentFilmsAndReview" resultMap="film">-->
 <!--        select m.*,f.* from movie m,recentfilms r where m.mid=r.mid left join filmreview f on m.mid=f.mid-->
 <!--    </select>-->
+
 </mapper>

@@ -48,7 +48,7 @@
 <!--    </resultMap>-->
     <!-- 根据影片id获取该影片所有评价   -->
     <select id="getFilmReviewInfoById" parameterType="int" resultType="com.wqy.cinematickets.entity.FilmReview">
-        select * from filmreview f join user u on f.uid=u.uid where mid=#{mid}
+        select * from filmreview f join user u on f.uid=u.uid where mid=#{mid} order by f.evaluatetime desc
     </select>
     <!--  添加想看的影片  -->
     <insert id="addWantSeeFilm" parameterType="com.wqy.cinematickets.entity.WantFilm">
@@ -123,6 +123,11 @@
             <result property="releasetime" column="releasetime"></result>
             <result property="mintroduction" column="mintroduction"></result>
         </association>
+        <association property="user" javaType="com.wqy.cinematickets.entity.User">
+            <id property="uid" column="uid"></id>
+            <result property="username" column="username"></result>
+
+        </association>
     </resultMap>
     <!-- 根据订单编号获取订单信息   -->
     <select id="getOrderInfo" resultMap="order" parameterType="String">
@@ -131,6 +136,14 @@
     <!-- 根据用户id获取订单列表 -->
     <select id="getUserOrderList" resultMap="order" parameterType="int">
         select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid where o.uid=#{uid} order by o.oid desc
+    </select>
+    <!-- 获取所有订单信息   -->
+    <select id="getAllOrderInfo" resultMap="order" parameterType="com.wqy.cinematickets.entity.Pagination">
+        select * from uorder o left join exclusivepiece e on o.eid = e.eid left join movie m on e.mid = m.mid left join user u on o.uid = u.uid order by o.oid desc limit #{pageSize} offset #{pageIndex}
+    </select>
+    <!-- 获取所有订单数量   -->
+    <select id="getAllOrderCount" resultType="int">
+        select COUNT(*) from uorder
     </select>
     <!-- 根据订单编号查询座位   -->
     <select id="getSeatselectionByOid" parameterType="String" resultType="com.wqy.cinematickets.entity.SeatSelection">
@@ -152,4 +165,8 @@
     <update id="updatePassword" parameterType="com.wqy.cinematickets.entity.User">
         update user set password=#{password} where uid=#{uid}
     </update>
+    <!-- 用户注册 -->
+    <insert id="addUser" parameterType="com.wqy.cinematickets.entity.User">
+        insert into user (username,password,utype) value (#{username},#{password},#{utype})
+    </insert>
 </mapper>

@@ -183,4 +183,32 @@ public class ReceptionServiceImpl implements ReceptionService {
     public List<Order> GetUserOrderListService(int uid){
         return receptionDao.getUserOrderList(uid);
     }
+
+    @Override
+    //用户注册
+    public Boolean AddUserService(User user){
+        int i = receptionDao.addUser(user);
+        if(i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    //获取所有订单信息
+    public List<Order> GetAllOrderInfoService(Pagination pagination){
+        List<Order> orderList = receptionDao.getAllOrderInfo(pagination);
+        for(Order order:orderList){
+            List<SeatSelection> seatList = receptionDao.getSeatselectionByOid(order.getOid());
+            order.setSeatSelectionList(seatList);
+        }
+        return orderList;
+    }
+
+    @Override
+    //获取所有订单数量
+    public int GetAllOrderCountService(){
+        return receptionDao.getAllOrderCount();
+    }
 }

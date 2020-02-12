@@ -10,6 +10,7 @@ public class Order {
     private List<SeatSelection> seatSelectionList;
     private ExclusivePiece exclusivePiece;
     private Film film;
+    private User user;
     public String getOid() {
         return oid;
     }
@@ -64,5 +65,13 @@ public class Order {
 
     public void setFilm(Film film) {
         this.film = film;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

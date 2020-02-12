@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -268,5 +269,33 @@ public class ReceptionController {
             listResult.setMessage("没有查询到数据");
         }
         return listResult;
+    }
+
+    //用户注册
+    @RequestMapping(value = "/AddUser",method = RequestMethod.POST)
+    public Boolean AddUser(@RequestBody User user){
+        user.setUtype(1);
+        return receptionService.AddUserService(user);
+    }
+
+    //获取所有订单信息
+    @RequestMapping(value = "/GetAllOrderInfo",method = RequestMethod.POST)
+    public Result<List<Order>> GetAllOrderInfo(@RequestBody Pagination pagination){
+        List<Order> orderList = receptionService.GetAllOrderInfoService(pagination);
+        Result<List<Order>> listResult = new Result<List<Order>>();
+        if(orderList != null){
+            listResult.setCode(0);
+            listResult.setBody(orderList);
+        }else {
+            listResult.setCode(1000);
+            listResult.setMessage("没有查询到数据");
+        }
+        return listResult;
+    }
+
+    //获取所有订单数量
+    @RequestMapping(value = "/GetAllOrderCount",method = RequestMethod.GET)
+    public int GetAllOrderCount(){
+        return receptionService.GetAllOrderCountService();
     }
 }

@@ -47,4 +47,10 @@ public interface ReceptionDao {
     int updatePassword(User user);
     //根据用户id获取订单列表
     List<Order> getUserOrderList(int uid);
+    //用户注册
+    int addUser(User user);
+    //获取所有订单信息
+    List<Order> getAllOrderInfo(Pagination pagination);
+    //获取所有订单数量
+    int getAllOrderCount();
 }

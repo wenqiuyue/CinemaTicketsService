@@ -120,7 +120,11 @@ public class ManagerServiceImpl implements ManagerService {
     public List<Film> getAllRecentFilms(){
         return managerDao.getAllRecentFilms();
     }
-
+    @Override
+    //近期影片票房
+    public int getFilmNum(int eid){
+        return managerDao.getFilmNum(eid);
+    }
     @Override
     //添加放映厅
     public Boolean addProjectionHall(ProjectionHall projectionHall){

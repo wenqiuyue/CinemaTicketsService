@@ -43,5 +43,10 @@ public interface ReceptionService {
     Boolean UpdatePasswordService(User user);
     //根据用户id获取订单列表
     List<Order> GetUserOrderListService(int uid);
-
+    //用户注册
+    Boolean AddUserService(User user);
+    //获取所有订单信息
+    List<Order> GetAllOrderInfoService(Pagination pagination);
+    //获取所有订单数量
+    int GetAllOrderCountService();
 }
