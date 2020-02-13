@@ -81,7 +81,7 @@
     </insert>
     <!--  单表查询场次  -->
     <select id="getExclusivepiece" resultType="com.wqy.cinematickets.entity.ExclusivePiece">
-        select * from exclusivepiece
+        select * from exclusivepiece where DATE_FORMAT(timebegin,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
     </select>
     <resultMap id="exclusivePiece" type="com.wqy.cinematickets.entity.ExclusivePiece">
         <id property="eid" column="eid"></id>
