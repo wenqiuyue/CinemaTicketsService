@@ -29,7 +29,7 @@
     </select>
     <!--  根据影片id修改影片库的影片信息  -->
     <update id="updateMovieById" parameterType="com.wqy.cinematickets.entity.Film">
-        update movie set mname=#{mname},mtype=#{mtype},mcountry=#{mcountry},releasetime=#{releasetime},mduration=#{mduration},mpicture=#{mpicture},mintroduction=#{mintroduction},mlanguage=#{mlanguage},meffect=#{meffect} where mid=#{mid}
+        update movie set mname=#{mname},mtype=#{mtype},mcountry=#{mcountry},releasetime=#{releasetime},mduration=#{mduration},mpicture=#{mpicture},mintroduction=#{mintroduction} where mid=#{mid}
     </update>
     <!--  根据影片id删除影片库的影片  -->
     <delete id="delMovieByid" parameterType="int">
